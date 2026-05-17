@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Station 1</title>
+  <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Arial, sans-serif;
+  background: #EEEDFE;
+  padding: 20px 12px 40px;
+  display: flex;
+  justify-content: center;
+}
+.wrap { width: 100%; max-width: 460px; }
+.top-bar {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-bottom: 14px;
+}
+.badge {
+  background: #534AB7; color: white;
+  border-radius: 20px; padding: 5px 14px;
+  font-size: 12px; font-weight: bold;
+}
+.num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: #534AB7; color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: bold;
+}
+.card {
+  background: white; border-radius: 16px;
+  padding: 20px; margin-bottom: 14px;
+  box-shadow: 0 2px 12px rgba(83,74,183,.12);
+}
+.card h2 { color: #534AB7; font-size: 16px; margin-bottom: 14px; }
+.contexte {
+  background: #F1EFE8; border-radius: 10px;
+  padding: 13px 15px; font-size: 14px;
+  color: #444; line-height: 1.6; margin-bottom: 14px;
+}
+.question {
+  background: #EEEDFE; border-radius: 10px;
+  padding: 14px 15px; font-size: 15px;
+  font-weight: bold; color: #26215C; line-height: 1.5;
+  border-left: 4px solid #534AB7;
+}
+.question small {
+  display: block; font-weight: normal;
+  font-size: 12px; color: #534AB7; margin-top: 6px;
+}
+.input-row { margin-top: 16px; }
+.input-row label {
+  display: block; font-size: 12px;
+  color: #888; margin-bottom: 6px;
+}
+.champ {
+  width: 100%; padding: 13px 16px;
+  font-size: 22px; font-weight: bold;
+  border: 3px solid #C8C5F0;
+  border-radius: 10px; text-align: center;
+  color: #26215C;
+}
+.btn {
+  display: block; width: 100%;
+  margin-top: 12px; padding: 15px;
+  font-size: 16px; font-weight: bold;
+  background: #534AB7; color: white;
+  border: none; border-radius: 10px; cursor: pointer;
+}
+.btn:active { background: #3C3489; }
+.correct {
+  background: #E1F5EE;
+  border-left: 5px solid #1D9E75;
+  border-radius: 14px; padding: 18px;
+  margin-top: 14px; display: none;
+}
+.wrong {
+  background: #FAEEDA;
+  border-left: 5px solid #BA7517;
+  border-radius: 14px; padding: 18px;
+  margin-top: 14px; display: none;
+}
+.titre-ok { color: #0F6E56; font-size: 16px; font-weight: bold; }
+.titre-ko { color: #854F0B; font-size: 16px; font-weight: bold; }
+.corrige {
+  background: #f0fdf7; border-radius: 8px;
+  padding: 12px 14px; margin: 12px 0;
+  font-size: 13px; color: #27500A;
+  font-family: 'Courier New', monospace;
+  line-height: 1.9;
+}
+.lettre-box { text-align: center; margin: 14px 0; }
+.lettre {
+  display: inline-block;
+  font-size: 64px; font-weight: 900;
+  color: white; background: #1D9E75;
+  width: 90px; height: 90px; line-height: 90px;
+  border-radius: 16px;
+}
+.note {
+  font-size: 13px; color: #0F6E56;
+  text-align: center; font-style: italic; margin-top: 8px;
+}
+.indice {
+  font-size: 14px; color: #633806;
+  line-height: 1.6; margin-top: 8px;
+}
+.retry {
+  display: block; width: 100%; margin-top: 12px;
+  padding: 11px; font-size: 13px; font-weight: bold;
+  background: white; color: #BA7517;
+  border: 2px solid #BA7517; border-radius: 8px; cursor: pointer;
+}
+.footer {
+  text-align: center; font-size: 11px;
+  color: #888; margin-top: 20px;
+}
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top-bar">
+    <span class="badge">🔐 Escape Game Maths — PIPAC</span>
+    <div class="num">1</div>
+  </div>
+
+  <div class="card">
+    <h2>🐔 Station 1/10 — Exponentielle de base q</h2>
+
+    <div class="contexte">
+      Un éleveur de volailles suit la croissance de son cheptel.<br><br>
+      Au départ <strong>(t = 0)</strong>, il possède <strong>200 poules</strong>.<br>
+      Chaque mois, le nombre de poules est <strong>multiplié par 1,5</strong>.
+    </div>
+
+    <div class="question">
+      Combien de poules l'éleveur possède-t-il au bout de <strong>4 mois</strong> ?
+      <small>Calculer N(4) = 200 × 1,5⁴ — arrondir à l'unité</small>
+    </div>
+
+    <div class="input-row">
+      <label>Tapez votre réponse ci-dessous :</label>
+      <input class="champ" type="text" id="rep" placeholder="ex : 1013" autocomplete="off">
+      <button class="btn" onclick="tester()">✅ Valider ma réponse</button>
+    </div>
+  </div>
+
+  <div class="correct" id="ok">
+    <div class="titre-ok">🎉 Bravo, bonne réponse !</div>
+    <div class="corrige">
+      N(t) = 200 × 1,5ᵗ<br>
+      1,5² = 2,25<br>
+      1,5⁴ = 2,25 × 2,25 = 5,0625<br>
+      N(4) = 200 × 5,0625 = 1012,5 ≈ 1013 poules
+    </div>
+    <div class="lettre-box">
+      <div class="lettre">M</div>
+      <div class="note">📝 Notez cette lettre sur votre feuille de route !</div>
+    </div>
+  </div>
+
+  <div class="wrong" id="ko">
+    <div class="titre-ko">💡 Pas encore... voici un indice :</div>
+    <div class="indice">
+      Rappel : <strong>N(t) = N₀ × qᵗ</strong> avec N₀ = 200 et q = 1,5.<br><br>
+      Calculez 1,5⁴ à la calculatrice puis multipliez par 200.<br><br>
+      <em>Astuce : 1,5 × 1,5 = 2,25 puis 2,25 × 2,25 = ?</em>
+    </div>
+    <button class="retry" onclick="recommencer()">🔄 Réessayer</button>
+  </div>
+
+  <div class="footer">Terminale PIPAC · Établissement ENILIA ENSMIC</div>
+
+</div>
+
+<script>
+function tester() {
+  var champ = document.getElementById('rep');
+  var ok = document.getElementById('ok');
+  var ko = document.getElementById('ko');
+  var texte = champ.value;
+  texte = texte.replace(',', '.');
+  texte = texte.trim();
+  var nombre = parseFloat(texte);
+  ok.style.display = 'none';
+  ko.style.display = 'none';
+  if (isNaN(nombre)) {
+    ko.style.display = 'block';
+    return;
+  }
+  if (nombre >= 1012 && nombre <= 1014) {
+    ok.style.display = 'block';
+  } else {
+    ko.style.display = 'block';
+  }
+}
+
+function recommencer() {
+  document.getElementById('rep').value = '';
+  document.getElementById('ok').style.display = 'none';
+  document.getElementById('ko').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
