@@ -143,7 +143,7 @@ body {
 
     <div class="input-row">
       <label>Tapez votre réponse ci-dessous :</label>
-      <input class="champ" type="text" id="rep" placeholder="ex : 1013" autocomplete="off">
+      <input class="champ" type="text" id="rep" placeholder="Tapez votre réponse..." autocomplete="off" onkeypress="if(event.key==='Enter') tester()">
       <button class="btn" onclick="tester()">✅ Valider ma réponse</button>
     </div>
   </div>
