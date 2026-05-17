@@ -169,7 +169,7 @@ body {
       Calculez 1,5⁴ à la calculatrice puis multipliez par 200.<br><br>
       <em>Astuce : 1,5 × 1,5 = 2,25 puis 2,25 × 2,25 = ?</em>
     </div>
-    <button class="retry" onclick="reset()">🔄 Réessayer</button>
+    <button class="retry" onclick="recommencer()">🔄 Réessayer</button>
   </div>
 
   <div class="footer">Terminale PIPAC · Établissement ENILIA ENSMIC</div>
@@ -198,7 +198,7 @@ function tester() {
   }
 }
 
-function reset() {
+function recommencer() {
   document.getElementById('rep').value = '';
   document.getElementById('ok').style.display = 'none';
   document.getElementById('ko').style.display = 'none';
