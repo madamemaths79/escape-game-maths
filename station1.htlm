@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Station 1 — Escape Game Maths</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 480px; margin: 0 auto;
+           padding: 20px; background: #f5f5f5; }
+    .card { background: white; border-radius: 12px; padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 16px; }
+    h2 { color: #534AB7; margin-top: 0; }
+    .contexte { background: #F1EFE8; border-radius: 8px;
+                padding: 14px; font-size: 14px; color: #444; }
+    .question { background: #EEEDFE; border-radius: 8px; padding: 14px;
+                font-size: 15px; font-weight: bold; color: #26215C; }
+    input { width: 100%; padding: 12px; font-size: 18px; border: 2px solid #ccc;
+            border-radius: 8px; box-sizing: border-box; margin: 12px 0;
+            text-align: center; }
+    button { width: 100%; padding: 14px; font-size: 16px; font-weight: bold;
+             background: #534AB7; color: white; border: none;
+             border-radius: 8px; cursor: pointer; }
+    button:hover { background: #3C3489; }
+    .correct { background: #E1F5EE; border-left: 4px solid #1D9E75;
+               border-radius: 8px; padding: 14px; display: none; }
+    .wrong   { background: #FAEEDA; border-left: 4px solid #BA7517;
+               border-radius: 8px; padding: 14px; display: none; }
+    .lettre  { font-size: 48px; font-weight: bold; color: #1D9E75;
+               text-align: center; margin: 10px 0; }
+    .badge   { background: #534AB7; color: white; border-radius: 20px;
+               padding: 4px 12px; font-size: 12px; display: inline-block; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <span class="badge">Station 1 / 10</span>
+  <h2>Exponentielle de base q</h2>
+
+  <div class="contexte">
+    🐔 Un éleveur possède <strong>200 poules</strong> au départ.
+    Chaque mois, le nombre est <strong>multiplié par 1,5</strong>.
+  </div>
+
+  <br>
+
+  <div class="question">
+    ❓ Combien de poules possède-t-il après <strong>4 mois</strong> ?<br>
+    <small style="font-weight:normal">Calculer N(4) = 200 × 1,5⁴ — arrondir à l'unité</small>
+  </div>
+
+  <input type="number" id="reponse" placeholder="Votre réponse...">
+  <button onclick="verifier()">✅ Valider</button>
+</div>
+
+<!-- Message si bonne réponse -->
+<div class="correct" id="msg-correct">
+  <strong>🎉 Bravo, bonne réponse !</strong><br><br>
+  <strong>Détail du calcul :</strong><br>
+  N(t) = 200 × 1,5ᵗ<br>
+  N(4) = 200 × 1,5⁴ = 200 × 5,0625 = <strong>1 013 poules</strong><br><br>
+  Votre lettre est :
+  <div class="lettre">M</div>
+  📝 Notez-la sur votre feuille de route !
+</div>
+
+<!-- Message si mauvaise réponse -->
+<div class="wrong" id="msg-wrong">
+  <strong>💡 Pas encore... Voici un indice :</strong><br><br>
+  Rappel : N(t) = N₀ × qᵗ avec N₀ = 200 et q = 1,5.<br>
+  Calculez <strong>1,5⁴</strong> à la calculatrice, puis multipliez par 200.<br><br>
+  <em>Réessayez !</em>
+</div>
+
+<script>
+  const BONNE_REPONSE = 1013; // ← changer pour chaque station
+
+  function verifier() {
+    const val = parseInt(document.getElementById('reponse').value);
+    const correct = document.getElementById('msg-correct');
+    const wrong   = document.getElementById('msg-wrong');
+
+    // Masquer les deux d'abord
+    correct.style.display = 'none';
+    wrong.style.display   = 'none';
+
+    if (val === BONNE_REPONSE) {
+      correct.style.display = 'block';
+    } else {
+      wrong.style.display = 'block';
+    }
+  }
+
+  // Valider avec la touche Entrée
+  document.getElementById('reponse').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') verifier();
+  });
+</script>
+
+</body>
+</html>
